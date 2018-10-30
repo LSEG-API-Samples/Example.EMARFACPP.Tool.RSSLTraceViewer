@@ -30,6 +30,47 @@ Normally when the application requesting data for Market Price and Level 2 Marke
 
 The solution project is available for from [Github](https://developers.thomsonreuters.com/system/files/xxx.zip).
 
+## How to collect RSSL Tracing log
+
+The RSSL tracing log was provided for troubleshooting purpose and it's not turn on by default. User may use the following instruction to turn on the log in RFA C++/.NET and EMA C++ application. Please note that currently the utility does not support the trace from RFA and EMA java as it can't provide a valid XML trace format. There are some garbage or unexpected text inside the XML fragment and there are mixing between simple log and XML data inside the trace so that it cause the XML parser error. If you want to use the trace log from EMA java with the application, the workaround is to manually remove invalid text or string from XML fragment and save it to a valid xml file.
+
+### RFA C++ and .NET application
+User has to add the following configuration to turn on RSSL tracing log. 
+
+```
+\Connections\<Connection_RSSL>\connectionType    = "RSSL"
+\Connections\<Connection_RSSL>\rsslPort     = "<RSSL Port>"
+\Connections\<Connection_RSSL>\hostName        = "<ADS/Provider Hostname>"
+\Connections\<Connection_RSSL>\traceMsg = false
+\Connections\<Connection_RSSL>\traceMsgToFile = true
+\Connections\<Connection_RSSL>\tracePing = true
+\Connections\<Connection_RSSL>\traceMsgFileName   = "RSSLConsumerTrace"
+\Connections\<Connection_RSSL>\traceMsgDomains = "all"
+\Connections\<Connection_RSSL>\traceRespMsg = true
+\Connections\<Connection_RSSL>\traceReqMsg = true
+\Connections\<Connection_RSSL>\traceMsgHex = false 
+\Connections\<Connection_RSSL>\traceMsgMaxMsgSize = 200000000
+\Connections\<Connection_RSSL>\traceMsgMultipleFiles = true
+
+```
+Note that traceMsgFileName is the output xml file which RFA will generate under running directory. From above example, the output will be RSSLConsumerTrace_<pid>.xml where <pid> is the process id of the application.
+
+### EMA C++ application
+
+For EMA C++ application, user has to copy EmaConfig.xml which provided in EMA Examples folder to project directory or running directory and then add below XML to EMA configuration file under section Consumer to turn on the tracing log. Note that you have to set XmlTraceToFile to 1 to turn on the log and set it to 0 to turn off the log.
+
+```
+<DefaultConsumer value="Consumer_1"/>
+<Consumer>
+    <Name value="Consumer_1"/>
+    ...
+    <XmlTraceToFile value="1"/>
+    <XmlTraceToStdout value="0"/>
+</Consumer>
+		
+```
+Though you are setting server name/ip and RSSL port in application codes and not using Channel config from the configuration file, you can also copy the configuration to the running directory and set the config under DefaultConsumer or DefaultProvider section. Above sample set DefaultConsumer to Consumer_1 then EMA internal will check the value inside the configuration file and verify option to turn on trace file from Consumer_1. And EMA will generate the RSSL Tracing log file name EmaTrace_<id>.xml under the running directory.
+
 ## Building and Running Utility
 
 
