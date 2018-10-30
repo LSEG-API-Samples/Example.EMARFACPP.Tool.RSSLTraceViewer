@@ -1,0 +1,81 @@
+﻿<Window x:Class="RSSLTraceViewerGUI.DisplayMRNData"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="DisplayMRNData" Height="650" Width="Auto" Background="Black" ResizeMode="CanResizeWithGrip">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.8*" />
+            <RowDefinition Height="9*" />
+            <RowDefinition Height="0.2*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10*" />
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Row="0" Height="Auto">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.3*" />
+                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="0.2*" />
+                <ColumnDefinition Width="6.5*" />
+
+            </Grid.ColumnDefinitions>
+            
+            <StackPanel Orientation="Horizontal" Height="60" Width="Auto" Grid.Column="1" HorizontalAlignment="Left">
+                <Label Name="JsonDataHeaderText" Content="JSON Data" />
+                <Button Name="SaveJsonBtn" Click="SaveJsonBtn_OnClick">Save Json data to file</Button>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Grid.Column="3" Height="25">
+                
+                <TextBlock Name="RawHeader1" Width="Auto"
+                           HorizontalAlignment="Right" TextAlignment="Right"
+                           Text="{Binding RawHeaderText}" Foreground="GhostWhite" 
+                           Height="25"
+                           Padding="2"/>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="6*" />
+                <ColumnDefinition Width="4*" />
+            </Grid.ColumnDefinitions>
+            <GridSplitter Grid.Column="1"
+                          HorizontalAlignment="Left"
+                          ResizeDirection="Columns"
+                          ResizeBehavior="BasedOnAlignment"
+                          Height="580" VerticalAlignment="Top" Width="Auto" ToolTip="Click and drag Splitter to resize" />
+
+            <StackPanel Grid.Column="1"  Width="Auto">
+                <TreeView Name="XmlRawTreeView" Height="580" Width="Auto" Margin="2">
+                    <TreeView.Resources>
+                        <Style TargetType="{x:Type TreeViewItem}">
+                            <Setter Property="HeaderTemplate">
+                                <Setter.Value>
+                                    <DataTemplate>
+                                        <TextBlock Width="400"
+                                                       TextWrapping="Wrap"
+                                                       Text="{Binding}" Foreground="GhostWhite" />
+                                    </DataTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </TreeView.Resources>
+                </TreeView>
+            </StackPanel>
+            <StackPanel Grid.Column="0" Width="Auto" CanHorizontallyScroll="True"
+                        CanVerticallyScroll="True" Margin="2">
+                <TextBox x:Name="RawText"
+                         FontSize="12"
+                         TextWrapping="Wrap"
+                         VerticalScrollBarVisibility="Auto"
+                         HorizontalScrollBarVisibility="Auto"
+                         Foreground="GhostWhite"
+                         Height="580" Width="Auto"
+                         Text="{Binding RawData}" />
+
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>
