@@ -603,7 +603,7 @@ namespace RSSLTraceViewerGUI
 
             XmlFragmentGrid1.ItemsSource = viewItemSource;
             UnpackMrnBtn.IsEnabled = false;
-            this.SearchGuidText.Text = string.Empty;
+      
         }
 
         private void SearchGuidText_OnTextChanged(object sender, TextChangedEventArgs e)
