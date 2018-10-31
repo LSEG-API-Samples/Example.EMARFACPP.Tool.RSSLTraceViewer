@@ -73,12 +73,95 @@ Though you are setting server name/ip and RSSL port in application codes and not
 
 ## Building and Running Utility
 
+TO build the application you just clone the solution from github and then open solution file __RSSLTraceViewerGUI.sln__ with Visual Studio 2017. Then build the project with Debug or Release build.
 
+![VisualStudio2017](/images/VS2017.PNG)
 
 	
 ### Launching the application:
 
+You can launch the application by click RSSLTraceViewerGUI.exe which locates under Release or Debug folder like the following sample path "<GitHubRepo>\Example.EMARFACPP.Tool.RSSLTraceViewer\RSSLTraceViewerGUI\bin\Release"
 
+![LaunchingApplication](images/launch.png)
+
+It will shows blank Windows like the following screen shot.
+
+![MainPage](/images/mainpage_bullet.png)
+
+There are 4 bullet from above images
+1. Starter using the application user has to click __Load Trace file__ button to load XML file contains RSSL Trace log.
+2. Bullet 2 is text box for display path to xml file after user click __Load Trace file__ button.
+3. Bullet 3 is the area of DataGrid control using for display data like order of XML fragment from the file, time stamp, RDM Domain and Stream ID from the RSSL tracing log.
+4. Bullet 4 is the area of Tree View which was designed to shows data for each XML fragment. 
+
+### Usages
+
+Client just click __Load Trace file__ button as described in previous section and the applicaiton will process the XML file and decoded the data in create internal data strcuture to bind the data to DataGrid.
+
+![Load XML Trace file](/images/mainpage5.PNG)
+
+The applicaiton will display XML fragments in DataGrid control like below sample. Please refer to information from previous section about the meaning of each bullet.
+
+![MainPage](/images/mainpage_loaded.png)
+
+There are additional information about the internal progress shows at the Windows capture and the following screenshot shows number of XML fragments inside the xml file.
+
+![Additional Info](/images/AdditionalTab.png)
+
+User can resize the windows and click at Grid Seperator at the position of Bullet 3 from the below screen shot. It allows user to freely move the Grid to left or right to review the data.
+
+![GridSerator](/images/MovePane.png) 
+
+
+#### Unpack MRN Data 
+
+To unpack or display uncompressed MRN Real-Time news data, user has to double click each row inside the DataGrid area to display data at the right panel which view display data as TreeView. The applicaiton does not decoded data inside each XML fragment when it load the XML file. It will decode the data after user double DataGrid row, this can help speed up XML load times.
+
+![ClickRow](/images/MRNLoaded2.png)
+
+Above screen shot shows the data from RSSL tracing log which contains MRN Real-Times news data from MRN_STORY RIC. User just double click DataGrid row at the first step and then application will decode the data if it contains fieldEntry and construct a new TreeView control to display at position of Bullet 2 from the screenshot. Bullet 3 is __Unpack MRN Data__ used to unpack MRN data from selected XML fragment. Application has internal algorithm to find relavance XML fragmensn and uncompress the data and shows in a new windows like below screen shot. Note that the __Unpack MRN Data__ button will shows when you click at the row containing GUID only. If selected GUID contains invalid fragments list,the applicaiton will popup message box with details of the error. 
+For example, 
+Overall XML Fragments size less than or larger than total size specify in the first fragment of particular GUID.
+
+![Display News](/images/DisplayMRNJson.png)
+
+#### Display and Save MRN JSON data to file
+
+Based on the DisplayMRNData screen shot from previous section there are four parts on the window.
+1. Bullet 1 is text block for display uncompressed JSON data.
+2. Bullet 2 area is a list of relavant XML fragments in a format of TreeView.
+3. Bullet 3 is button for save the raw JSON data to file so that user can open the JSON file in other text editor to review data inside XML Fragments.
+4. Bullet 4 is the area for display information about the GUID.
+
+#### Display Level 1 and Level 2 Market Price data
+
+User can just load the RSSL XML trace log contains Market Price data. The step to display data is the same as MRN but the data at the right hand side does not have button to Unapck MRN data.
+
+![Display News](/images/MarektPriceBullet.png)
+
+Applicaiton will decode fieldEntry and show Fid name and decoded value in the Treeview control. However, if the Fid id is custom fid and is not available in data dictionary, the application will display original Hex string instead.
+
+#### Filtering data inside DataGrid 
+
+There are an option for user to filter column such as Msg Type, Key(item name, user name in the message), Domain and Stream Id. It also provide interface to search MRN data by using GUID.
+
+User can just click at the column header and applicaiton will filter all avaialbe data for each columns and popup combo box. User just tick check box inside combo box to filter the data for particular column. Below is sample screenshot when user click column header to filter data.
+
+![DomainFiltering](/images/filterDomainBullet.png)
+
+![MsgTypeFiltering](/images/filtermsgtye.png)
+
+Below is output when select only refreshMsg
+
+![MsgTypeFiltering](/images/msgtyperesult.PNG)
+
+#### Searching GUID
+
+If the data inside RSSL Tracing log contains MRN data with GUID list, the application will shows GUID search box above the DataGrid. User just input GUID in GUID search textbox and the click __Search__ button. The application will search GUID string based on the current data inside the DataGrid. Below screenshot is the sample output.
+
+![MsgTypeFiltering](/images/GuidSearchBullet.png)
+
+Bullet 1 is GUID string user want to search and Bullet 2 is the result. The functionality should be able to help user confirm if the data they receive contains the some specific GUID or not.
 
 ## Contributing
 
