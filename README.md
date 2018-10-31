@@ -28,7 +28,7 @@ Normally when the application requesting data for Market Price and Level 2 Marke
 
 ## Utility download
 
-The solution project is available for from [Github](https://developers.thomsonreuters.com/system/files/xxx.zip).
+The solution project is available for from [Github](https://github.com/TR-API-Samples/Example.EMARFACPP.Tool.RSSLTraceViewer).
 
 ## How to collect RSSL Tracing log
 
