@@ -82,11 +82,11 @@ TO build the application you just clone the solution from github and then open s
 
 You can launch the application by click RSSLTraceViewerGUI.exe which locates under Release or Debug folder like the following sample path "<GitHubRepo>\Example.EMARFACPP.Tool.RSSLTraceViewer\RSSLTraceViewerGUI\bin\Release"
 
-![LaunchingApplication](images/launch.png)
+![LaunchingApplication](/images/launch.png)
 
 It will shows blank Windows like the following screen shot.
 
-![MainPage](/images/mainpage_bullet.png)
+![MainPage](/images/mainpagebullet.png)
 
 There are 4 bullet from above images
 1. Starter using the application user has to click __Load Trace file__ button to load XML file contains RSSL Trace log.
