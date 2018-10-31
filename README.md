@@ -89,14 +89,14 @@ It will shows blank Windows like the following screen shot.
 ![MainPage](/images/mainpagebullet.png)
 
 There are 4 bullet from above images
-1. Starter using the application user has to click __Load Trace file__ button to load XML file contains RSSL Trace log.
+1. Start using the application, user has to click __Load Trace file__ button to load XML file contains RSSL Trace log.
 2. Bullet 2 is text box for display path to xml file after user click __Load Trace file__ button.
-3. Bullet 3 is the area of DataGrid control using for display data like order of XML fragment from the file, time stamp, RDM Domain and Stream ID from the RSSL tracing log.
-4. Bullet 4 is the area of Tree View which was designed to shows data for each XML fragment. 
+3. Bullet 3 is the area of DataGrid control for display XML fragment order by sequence of xml inside autual XML Tracing log. The DataGrid also display time stamp, RDM Domain, Stream ID including GUID of the MRN.
+4. Bullet 4 is the area of Tree View for display decoded value inside the XML fragment.
 
 ### Usages
 
-Client just click __Load Trace file__ button as described in previous section and the applicaiton will process the XML file and decoded the data in create internal data strcuture to bind the data to DataGrid.
+Client just click __Load Trace file__ button to load XML file as described in previous section and then the applicaiton will process the XML data and create internal data strcuture to keep XML Fragment list and then bind the data to DataGrid.
 
 ![Load XML Trace file](/images/mainpage5.PNG)
 
@@ -104,33 +104,31 @@ The applicaiton will display XML fragments in DataGrid control like below sample
 
 ![MainPage](/images/mainpage_loaded.png)
 
-There are additional information about the internal progress shows at the Windows capture and the following screenshot shows number of XML fragments inside the xml file.
+There are additional information from the internal processing log shows at the Windows caption. Following screenshot shows number of XML fragments inside the xml.
 
 ![Additional Info](/images/AdditionalTab.png)
 
-User can resize the windows and click at Grid Seperator at the position of Bullet 3 from the below screen shot. It allows user to freely move the Grid to left or right to review the data.
+User can resize the windows and click at Grid Seperator at the position of Bullet 3 from the below screen shot. It allows user to move the control to left or right.
 
 ![GridSerator](/images/MovePane.png) 
 
-
 #### Unpack MRN Data 
 
-To unpack or display uncompressed MRN Real-Time news data, user has to double click each row inside the DataGrid area to display data at the right panel which view display data as TreeView. The applicaiton does not decoded data inside each XML fragment when it load the XML file. It will decode the data after user double DataGrid row, this can help speed up XML load times.
+To unpack or display uncompressed MRN Real-Time news data, user just double click DataGrid row to display data in TreeView at the right hand side. Actually the applicaiton does not decode XMLFragment data immediately after it load the XML file. Instead, it will decode the data after user double DataGrid row. This should help reduce XML file loading time at the first step.
 
 ![ClickRow](/images/MRNLoaded2.png)
 
-Above screen shot shows the data from RSSL tracing log which contains MRN Real-Times news data from MRN_STORY RIC. User just double click DataGrid row at the first step and then application will decode the data if it contains fieldEntry and construct a new TreeView control to display at position of Bullet 2 from the screenshot. Bullet 3 is __Unpack MRN Data__ used to unpack MRN data from selected XML fragment. Application has internal algorithm to find relavance XML fragmensn and uncompress the data and shows in a new windows like below screen shot. Note that the __Unpack MRN Data__ button will shows when you click at the row containing GUID only. If selected GUID contains invalid fragments list,the applicaiton will popup message box with details of the error. 
-For example, 
-Overall XML Fragments size less than or larger than total size specify in the first fragment of particular GUID.
+Above screen shot shows the data from RSSL tracing log which contains MRN Real-Times news data from MRN_STORY RIC. User just double click DataGrid row then the application will check if the XML contents containing fieldEntry or not. It will create a new TreeView control to display XML data inside TreeView from bullet 2 in the sample screen shot. Bullet 3 is __Unpack MRN Data__ used to unpack MRN data from selected XML fragment. Basically the application has internal algorithm to find relavance XML Fragments and calll internal method to uncompress the data and shows in a new Window like below sample screen shot. Note that the __Unpack MRN Data__ button will shows when selected row containing GUID only. Moreover if selected GUID contains invalid fragments list,the applicaiton will popup message box with details of the error. For example, when overall XML Fragments size less than or larger than total size.
 
 ![Display News](/images/DisplayMRNJson.png)
 
 #### Display and Save MRN JSON data to file
 
 Based on the DisplayMRNData screen shot from previous section there are four parts on the window.
+
 1. Bullet 1 is text block for display uncompressed JSON data.
-2. Bullet 2 area is a list of relavant XML fragments in a format of TreeView.
-3. Bullet 3 is button for save the raw JSON data to file so that user can open the JSON file in other text editor to review data inside XML Fragments.
+2. Bullet 2 is a list of relavant XML fragments under TreeView structure.
+3. Bullet 3 is button for saving the raw JSON data to file. User can open the JSON file in other text editor to review data inside XML Fragments.
 4. Bullet 4 is the area for display information about the GUID.
 
 #### Display Level 1 and Level 2 Market Price data
@@ -141,17 +139,17 @@ User can just load the RSSL XML trace log contains Market Price data. The step t
 
 Applicaiton will decode fieldEntry and show Fid name and decoded value in the Treeview control. However, if the Fid id is custom fid and is not available in data dictionary, the application will display original Hex string instead.
 
-#### Filtering data inside DataGrid 
+#### Filtering data inside DataGrid
 
 There are an option for user to filter column such as Msg Type, Key(item name, user name in the message), Domain and Stream Id. It also provide interface to search MRN data by using GUID.
 
-User can just click at the column header and applicaiton will filter all avaialbe data for each columns and popup combo box. User just tick check box inside combo box to filter the data for particular column. Below is sample screenshot when user click column header to filter data.
+User can just click at the column header and applicaiton will filter all avaialbe data for each columns and popup combo box. User just tick/untick check box inside combo box to filter the data for particular column. Below is sample screenshot when user click column header to filter data.
 
 ![DomainFiltering](/images/filterDomainBullet.png)
 
 ![MsgTypeFiltering](/images/filtermsgtye.png)
 
-Below is output when select only refreshMsg
+The following screen shot is sample output when user filter only refreshMsg.
 
 ![MsgTypeFiltering](/images/msgtyperesult.PNG)
 
