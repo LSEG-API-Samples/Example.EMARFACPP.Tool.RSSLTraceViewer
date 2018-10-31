@@ -82,7 +82,7 @@ TO build the application you just clone the solution from github and then open s
 
 You can launch the application by click RSSLTraceViewerGUI.exe which locates under Release or Debug folder like the following sample path "<GitHubRepo>\Example.EMARFACPP.Tool.RSSLTraceViewer\RSSLTraceViewerGUI\bin\Release"
 
-![LaunchingApplication](/images/launch.png)
+![LaunchingApplication](/images/launch.PNG)
 
 It will shows blank Windows like the following screen shot.
 
