@@ -292,9 +292,9 @@ Normally, application will check whether or not the XML element contains fieldEn
 
 #### Filtering data inside DataGrid
 
-There is an option for user to filter data by clicking the small button at the DataGrid column. There are some columns which allow using use the filter that are Msg Type, Key (item name, user name in the message), Domain and Stream Id. The application also provides interface to search MRN data by using GUID.
+There is an option for user to filter data by clicking the small button at the DataGrid column. There are some columns that are Msg Type, Key (item name, user name in the message), Domain and Stream Id that can be used to filter data. The application also provides interface to search MRN data by using GUID.
 
-To use the filter, user can just click at the small button on the column header, then it will pop up a Combo box containing a list of available filter values for each column. The user can just tick or untick a Checkbox inside the Combo box to select the value they interest. The application will apply the values with internal XML Fragments data and display data inside DataGrid based on the criteria. Below are sample screenshots when user click the button on the column header.
+To use the filter, user can just click at the small button on the column header, then it will pop up a Combo box containing a list of available filter values for each column. Then user can just tick or untick a Checkbox inside the Combo box to select the value they interest. The application will apply the values with internal XML Fragments data and display data inside DataGrid based on the criteria. Below are sample screenshots when user click the button on the column header.
 
 ![DomainFiltering](/images/filterDomainBullet.png)
 
