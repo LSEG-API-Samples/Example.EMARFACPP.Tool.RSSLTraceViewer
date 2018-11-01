@@ -114,7 +114,7 @@ User can resize the windows and click at Grid Seperator at the position of Bulle
 
 #### Unpack MRN Data 
 
-To unpack or display uncompressed MRN Real-Time news data, user just double click DataGrid row to display data in TreeView at the right hand side. Actually the applicaiton does not decode XMLFragment data immediately after it load the XML file. Instead, it will decode the data after user double DataGrid row. This should help reduce XML file loading time at the first step.
+To unpack or display uncompressed MRN Real-Time news data, user just double click DataGrid row to display data in TreeView at the right hand side. Actually the applicaiton does not decode XMLFragment data immediately after it load the XML file. Instead, it will decode the data after user double click at DataGrid row. This should help reduce XML file loading time at the first step.
 
 ![ClickRow](/images/MRNLoaded2.png)
 
