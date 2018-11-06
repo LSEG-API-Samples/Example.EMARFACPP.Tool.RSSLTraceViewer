@@ -163,6 +163,135 @@ If the data inside RSSL Tracing log contains MRN data with GUID list, the applic
 
 Bullet 1 is GUID string user want to search and Bullet 2 is the result. The functionality should be able to help user confirm if the data they receive contains the some specific GUID or not.
 
+## Limitation of Utility
+
+1) Current version of the XML parser used by the Utility was designed and tested with the RSSL tracing log from Elektron SDK C++ and the new version of RFA C++ 7.6 or later version. So it may not support the log from the old version of RFA C++ or UPA. This is because the old version use a difference XML format and structure. The XML parser requires additional XML comment come before the XML element containing the RSSL message, in order to get type of message (Incoming or Outgoing) and the time stamp the message sent or receive. It also required some attribute such as domainType and streamId XML attribute in the XML element. The supported XML structure should contains XML element and its attribute like the following sample.
+
+Sample of requestMsg.
+```XML
+
+<!-- Outgoing Message <string> -->
+<!-- Time: <Time String> -->
+<!-- rwfMajorVer="<major version>" rwfMinorVer="<minor version>" -->
+<requestMsg domainType="<Domain Type>" streamId="<Stream Id>"... >
+    <key ... name="<key name>" ...>
+        ...
+    </key>
+    <dataBody>
+    </dataBody>
+</requestMsg>
+```
+
+Sample of updateMsg or refreshMsg.
+```XML
+<!-- Incoming Message <Message> -->
+<!-- Time: <Time> -->
+<!-- rwfMajorVer="14" rwfMinorVer="0" -->
+<refreshMsg domainType="<Domain Type>" streamId="<Stream Id>" ...>
+    <key ... name="VOD.L" .../>
+    <dataBody>
+        <fieldList flags="0x9 (RSSL_FLF_HAS_FIELD_LIST_INFO|RSSL_FLF_HAS_STANDARD_DATA)" fieldListNum="194" dictionaryId="1">
+            <fieldEntry fieldId="1" data="15F9"/>
+            <fieldEntry fieldId="2" data="73"/>
+            <fieldEntry fieldId="3" data="564F 4441 464F 4E45 2047 524F 5550"/>
+           ...
+            <fieldEntry fieldId="32741" data=""/>
+            <fieldEntry fieldId="32743" data=""/>
+        </fieldList>
+    </dataBody>
+</refreshMsg>
+
+
+<!-- Incoming Message <Message> -->
+<!-- Time: <Time> -->
+<!-- rwfMajorVer="<major version>" rwfMinorVer="<minorversion>" -->
+<updateMsg domainType="<Domain Type>" streamId="<Stream Id>" ...>
+    ...
+            <mapEntry flags="0x0" action="RSSL_MPEA_ADD_ENTRY" key="5@4154DB03" >
+                <fieldList flags="0x8 (RSSL_FLF_HAS_STANDARD_DATA)">
+                    <fieldEntry fieldId="3427" data="0B01 0842"/>
+                    <fieldEntry fieldId="3429" data="0E03 20"/>
+                    <fieldEntry fieldId="3428" data="01"/>
+                    <fieldEntry fieldId="3426" data="3130 3936 3038 3031 3331"/>
+                    <fieldEntry fieldId="6520" data="014C E5F9"/>
+                    <fieldEntry fieldId="6522" data="040A 07E2"/>
+                </fieldList>
+            </mapEntry>
+    ...
+</updateMsg>
+
+```
+
+2) The XML Parser will stop parsing the XML file if it found parsing error in XML such as an invalid character or incomplete XML element. The application will popup message box with additional details about the exception from .NET XML class used by the application. A user may need to manually remove invalid XML tag or XML element from the XML file.
+
+3) The application can just decoding data in XML element name "fieldEntry" and it must contain attributes name "fieldId" and "data". Otherwise the application unable to parse the field data inside RSSL message.
+
+4) As described in the first limitation that the format of XML element must contain the same structure as RSSL Trace from EMA C++ or RFA C++ 7.6 and later version. However, there is an option for the user who wants to use the utility to decode a snapshot of data. There are additional configuration named  "__UseRDMStrictMode__"(default is True) in __app.config.json__ which user can set it to __False__ to allow the application parsing the XML fragments inside the XML file without checking the format or structure of the XML message. 
+
+For example,
+
+You want to decode fieldEntry inside specific update message such as Market By Price update and MRN update messages like the following sample XML data.
+
+```XML
+<updateMsg domainType="RSSL_DMT_MARKET_BY_ORDER" streamId="4" containerType="RSSL_DT_MAP" flags="0x10 (RSSL_UPMF_HAS_SEQ_NUM)" updateType="0 (RDM_UPD_EVENT_TYPE_UNSPECIFIED)" seqNum="15536" dataSize="79">
+    <dataBody>
+        <map flags="0x2 (RSSL_MPF_HAS_SUMMARY_DATA)" countHint="0" keyPrimitiveType="RSSL_DT_BUFFER" containerType="RSSL_DT_FIELD_LIST" >
+            <summaryData>
+                <fieldList flags="0x8 (RSSL_FLF_HAS_STANDARD_DATA)">
+                    <fieldEntry fieldId="4148" data="014C E5F9"/>
+                </fieldList>
+            </summaryData>
+            <mapEntry flags="0x0" action="RSSL_MPEA_ADD_ENTRY" key="5@4154DB03" >
+                <fieldList flags="0x8 (RSSL_FLF_HAS_STANDARD_DATA)">
+                    <fieldEntry fieldId="3427" data="0B01 0842"/>
+                    <fieldEntry fieldId="3429" data="0E03 20"/>
+                    <fieldEntry fieldId="3428" data="01"/>
+                    <fieldEntry fieldId="3426" data="3130 3936 3038 3031 3331"/>
+                    <fieldEntry fieldId="6520" data="014C E5F9"/>
+                    <fieldEntry fieldId="6522" data="040A 07E2"/>
+                </fieldList>
+            </mapEntry>
+        </map>
+    </dataBody>
+</updateMsg>
+
+<updateMsg domainType="RSSL_DMT_NEWS_TEXT_ANALYTICS" streamId="3" containerType="RSSL_DT_FIELD_LIST" flags="0x1D2 (RSSL_UPMF_HAS_PERM_DATA|RSSL_UPMF_HAS_SEQ_NUM|RSSL_UPMF_DO_NOT_CACHE|RSSL_UPMF_DO_NOT_CONFLATE|RSSL_UPMF_DO_NOT_RIPPLE)" updateType="0 (RDM_UPD_EVENT_TYPE_UNSPECIFIED)" seqNum="3694" permData="0308 4310 154C" dataSize="2717">
+    <dataBody>
+        <fieldList flags="0x8 (RSSL_FLF_HAS_STANDARD_DATA)">
+            <fieldEntry fieldId="4148" data="0226 3EF3"/>
+            <fieldEntry fieldId="17" data="0A0A 07E2"/>
+            <fieldEntry fieldId="8593" data="5354 4F52 59"/>
+            <fieldEntry fieldId="8506" data="32"/>
+            <fieldEntry fieldId="11787" data="3130"/>
+            <fieldEntry fieldId="32480" data="0AF9"/>
+            <fieldEntry fieldId="32479" data="01"/>
+            <fieldEntry fieldId="4271" data="5253 4A35 3836 3444 615F 3138 3130 3130 3269 472F 4B42 2B72 456C 6239 6F41 464A
+                4138 5A53 5373 4831 4C42 6232 2B2F 6F54 6C37 5736 7644"/>
+           ...
+        </fieldList>
+    </dataBody>
+</updateMsg>
+
+
+<updateMsg domainType="RSSL_DMT_NEWS_TEXT_ANALYTICS" streamId="3" containerType="RSSL_DT_FIELD_LIST" flags="0x1D2 (RSSL_UPMF_HAS_PERM_DATA|RSSL_UPMF_HAS_SEQ_NUM|RSSL_UPMF_DO_NOT_CACHE|RSSL_UPMF_DO_NOT_CONFLATE|RSSL_UPMF_DO_NOT_RIPPLE)" updateType="0 (RDM_UPD_EVENT_TYPE_UNSPECIFIED)" seqNum="3710" permData="0308 4310 154C" dataSize="288">
+    <dataBody>
+        <fieldList flags="0x8 (RSSL_FLF_HAS_STANDARD_DATA)">
+            <fieldEntry fieldId="4271" data="5253 4A35 3836 3444 615F 3138 3130 3130 3269 472F 4B42 2B72 456C 6239 6F41 464A
+                4138 5A53 5373 4831 4C42 6232 2B2F 6F54 6C37 5736 7644"/>
+            <fieldEntry fieldId="12215" data="4844 435F 5052 445F 41"/>
+            <fieldEntry fieldId="32479" data="02"/>
+            <fieldEntry fieldId="32641" data="4586 490A 8756 9191 83E2 0BD2...>
+        </fieldList>
+    </dataBody>
+</updateMsg>
+
+```
+The user can just copy these three XML fragments to a new XML file and then set UseRDMStrictMode to False and re-launch the utility. It should be able to parse the XML data and decode the MRN message if it contains all MRN fragments in the XML file. The application will shows the data in the GUI like below screenshot.
+
+![NoRDMStrictMode](/images/StrictMode.png)
+
+Anyway, instead of using this utility to open this kind of XML Trace messages, there is an alternate command line utility which user can used to decode the data from the same XML file. Please refer to [RSSL XML Trace Converter](https://github.com/TR-API-Samples/Example.EMARFACPP.Tool.RSSLXMLTraceConverter). The command line utility will convert the file to a new XML file contains decoded value instead.
+
 ## Contributing
 
 Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
