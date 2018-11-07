@@ -303,7 +303,7 @@ The user can just copy these three XML fragments to a new XML file and then set 
 
 ![NoRDMStrictMode](/images/StrictMode.png)
 
-Anyway, instead of using this utility to open this kind of XML Trace messages, we strongly suggest the user to use [RSSL XML Trace Converter](https://github.com/TR-API-Samples/Example.EMARFACPP.Tool.RSSLXMLTraceConverter) instead. The command line utility can convert the file to a new XML file contains decoded value instead.
+Anyway, instead of using this utility to open this kind of XML Trace messages, we strongly suggest the user to use [RSSL XML Trace Converter](https://github.com/TR-API-Samples/Example.EMARFACPP.Tool.RSSLXMLTraceConverter) instead. The command line utility can convert the file to a new XML file contains decoded value.
 
 ## Contributing
 
