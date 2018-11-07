@@ -78,7 +78,7 @@ From the above sample, we set DefaultConsumer to "Consumer_1" then EMA will chec
 
 ## Utility download
 
-The solution project is available for from [Github](https://github.com/TR-API-Samples/Example.EMARFACPP.Tool.RSSLTraceViewer).
+The solution project is available from [Github](https://github.com/TR-API-Samples/Example.EMARFACPP.Tool.RSSLTraceViewer).
 
 ## Building and Running Utility
 
