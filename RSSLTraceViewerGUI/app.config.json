@@ -3,5 +3,5 @@
     "RDMFieldDictFilePath": "./Dict/RDMFieldDictionary",
     "EnumTypeDefFilePath": "./Dict/enumtype.def"
   },
-  "UseRDMStrictMode": true
+  "UseRDMStrictMode": false
 }

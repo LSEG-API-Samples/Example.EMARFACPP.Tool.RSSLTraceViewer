@@ -45,9 +45,9 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
+    <Optimize>false</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
@@ -77,8 +77,9 @@
     <Reference Include="RDMDictDecoder">
       <HintPath>..\Libs\rdmdictionarydecoder\netstandard2.0\RDMDictDecoder.dll</HintPath>
     </Reference>
-    <Reference Include="RSSLTraceDecoder">
-      <HintPath>..\Libs\rssltracedecoder\netstandard2.0\RSSLTraceDecoder.dll</HintPath>
+    <Reference Include="RSSLTraceDecoder, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\rssltracedecoder\RSSLTraceDecoder\bin\Debug\netstandard2.0\RSSLTraceDecoder.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
