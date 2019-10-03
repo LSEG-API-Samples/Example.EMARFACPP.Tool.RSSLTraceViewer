@@ -74,13 +74,6 @@
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="RDMDictDecoder">
-      <HintPath>..\Libs\rdmdictionarydecoder\netstandard2.0\RDMDictDecoder.dll</HintPath>
-    </Reference>
-    <Reference Include="RSSLTraceDecoder, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\rssltracedecoder\RSSLTraceDecoder\bin\Debug\netstandard2.0\RSSLTraceDecoder.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -177,6 +170,16 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RDMDictDecoder\RDMDictDecoder.csproj">
+      <Project>{6607a699-9be6-4d4d-9bc3-6fe889de3778}</Project>
+      <Name>RDMDictDecoder</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RSSLTraceDecoder\RSSLTraceDecoder.csproj">
+      <Project>{ed9ca5d3-8781-4fce-9024-707e4f210c11}</Project>
+      <Name>RSSLTraceDecoder</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

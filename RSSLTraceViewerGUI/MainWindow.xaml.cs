@@ -134,14 +134,14 @@ namespace RSSLTraceViewerGUI
                 return;
             }
 
-            try
+            //try
             {
                 _messageList = await DecodeMrn(_fragmentList);
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            //catch (Exception ex)
+           // {
+           //     MessageBox.Show(ex.Message);
+           // }
        
 
         Application.Current.Dispatcher.Invoke((Action) (() =>

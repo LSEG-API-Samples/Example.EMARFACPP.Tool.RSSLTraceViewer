@@ -5,6 +5,10 @@ VisualStudioVersion = 15.0.27703.2000
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RSSLTraceViewerGUI", "RSSLTraceViewerGUI\RSSLTraceViewerGUI.csproj", "{140E688E-3DED-447D-884B-A7F053115B69}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RSSLTraceDecoder", "RSSLTraceDecoder\RSSLTraceDecoder.csproj", "{ED9CA5D3-8781-4FCE-9024-707E4F210C11}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RDMDictDecoder", "RDMDictDecoder\RDMDictDecoder.csproj", "{6607A699-9BE6-4D4D-9BC3-6FE889DE3778}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{140E688E-3DED-447D-884B-A7F053115B69}.Debug|Any CPU.Build.0 = Release|Any CPU
 		{140E688E-3DED-447D-884B-A7F053115B69}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{140E688E-3DED-447D-884B-A7F053115B69}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED9CA5D3-8781-4FCE-9024-707E4F210C11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED9CA5D3-8781-4FCE-9024-707E4F210C11}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED9CA5D3-8781-4FCE-9024-707E4F210C11}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED9CA5D3-8781-4FCE-9024-707E4F210C11}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6607A699-9BE6-4D4D-9BC3-6FE889DE3778}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6607A699-9BE6-4D4D-9BC3-6FE889DE3778}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6607A699-9BE6-4D4D-9BC3-6FE889DE3778}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6607A699-9BE6-4D4D-9BC3-6FE889DE3778}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
