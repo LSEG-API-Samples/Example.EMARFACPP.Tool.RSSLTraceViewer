@@ -2,7 +2,6 @@
 {
     namespace Utils
     {
-
         public partial class RdmDataConverter
         {
             internal enum MagnitudeType

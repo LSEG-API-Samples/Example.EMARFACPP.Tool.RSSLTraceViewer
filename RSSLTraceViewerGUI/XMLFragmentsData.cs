@@ -12,118 +12,119 @@ namespace RSSLTraceViewerGUI
         private int _mrnFragmentNumber;
         private string _msgDirection;
         private string _rdmMessageType;
+
+        private string _requestKeyName;
         private int _streamId;
         private string _timeStamp;
         private string _xmlRawData;
 
-        private string _requestKeyName;
-
         public XMLFragmentsData()
         {
-            this._guid = string.Empty;
-            this._mrnFragmentNumber = 0;
+            _guid = string.Empty;
+            _mrnFragmentNumber = 0;
         }
 
         public int Index
         {
-            get => this._index;
+            get => _index;
             set
             {
-                this._index = value;
-                this.OnPropertyChanged();
+                _index = value;
+                OnPropertyChanged();
             }
         }
 
         public string TimeStamp
         {
-            get => this._timeStamp;
+            get => _timeStamp;
 
             set
             {
-                this._timeStamp = value;
-                this.OnPropertyChanged();
+                _timeStamp = value;
+                OnPropertyChanged();
             }
         }
+
         public string RequestKeyName
         {
-            get => this._requestKeyName;
+            get => _requestKeyName;
 
             set
             {
-                this._requestKeyName = value;
-                this.OnPropertyChanged();
+                _requestKeyName = value;
+                OnPropertyChanged();
             }
         }
 
         public string MsgDirection
         {
-            get => this._msgDirection;
+            get => _msgDirection;
 
             set
             {
-                this._msgDirection = value;
-                this.OnPropertyChanged();
+                _msgDirection = value;
+                OnPropertyChanged();
             }
         }
 
 
         public int MrnFragmentNumber
         {
-            get => this._mrnFragmentNumber;
+            get => _mrnFragmentNumber;
             set
             {
-                this._mrnFragmentNumber = value;
-                this.OnPropertyChanged();
+                _mrnFragmentNumber = value;
+                OnPropertyChanged();
             }
         }
 
         public string RdmMessageType
         {
-            get => this._rdmMessageType;
+            get => _rdmMessageType;
             set
             {
-                this._rdmMessageType = value;
-                this.OnPropertyChanged();
+                _rdmMessageType = value;
+                OnPropertyChanged();
             }
         }
 
         public int StreamId
         {
-            get => this._streamId;
+            get => _streamId;
             set
             {
-                this._streamId = value;
-                this.OnPropertyChanged();
+                _streamId = value;
+                OnPropertyChanged();
             }
         }
 
         public string DomainType
         {
-            get => this._domainType;
+            get => _domainType;
             set
             {
-                this._domainType = value;
-                this.OnPropertyChanged();
+                _domainType = value;
+                OnPropertyChanged();
             }
         }
 
         public string GUID
         {
-            get => this._guid;
+            get => _guid;
             set
             {
-                this._guid = value;
-                this.OnPropertyChanged();
+                _guid = value;
+                OnPropertyChanged();
             }
         }
 
         public string XmlRawData
         {
-            get => this._xmlRawData;
+            get => _xmlRawData;
             set
             {
-                this._xmlRawData = value;
-                this.OnPropertyChanged();
+                _xmlRawData = value;
+                OnPropertyChanged();
             }
         }
 

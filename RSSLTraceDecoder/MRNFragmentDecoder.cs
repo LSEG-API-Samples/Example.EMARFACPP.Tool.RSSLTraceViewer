@@ -14,30 +14,27 @@ namespace RSSLTraceDecoder
     {
         public class MrnFragmentDecoder
         {
-           
-
-            public static bool DecodeMrnData(XmlFragmentList fragmentList,out MrnMsgList mrnList, out string errorMsg)
+            public static bool DecodeMrnData(XmlFragmentList fragmentList, out MrnMsgList mrnList, out string errorMsg)
             {
                 var result = Task.Run(() => DecodeMrnDataAsync(fragmentList)).Result;
                 mrnList = result.Item2;
                 errorMsg = result.Item3;
                 return result.Item1;
-
             }
-            public static async Task<Tuple<bool,MrnMsgList,string>> DecodeMrnDataAsync(XmlFragmentList fragmentList)
+
+            public static async Task<Tuple<bool, MrnMsgList, string>> DecodeMrnDataAsync(XmlFragmentList fragmentList)
             {
                 var mrnList = new MrnMsgList();
                 var errorMsg = string.Empty;
-                await Task.Run( () =>
-                {            
+                await Task.Run(() =>
+                {
                     try
                     {
-
                         List<XElement> elements;
                         foreach (var fragment in fragmentList.Fragments)
                         {
                             //process Attribues 
-                            if(string.IsNullOrEmpty(fragment.RawXmlData))
+                            if (string.IsNullOrEmpty(fragment.RawXmlData))
                                 continue;
 
                             var list = XmlHelper.GetElement(fragment.RawXmlData, fragment.RdmMessageType);
@@ -69,12 +66,10 @@ namespace RSSLTraceDecoder
                                 var keysAttrib = new Dictionary<string, string>();
                                 foreach (var key in enumerable.First().Attributes())
                                 {
-                                    if (key.Name == "name")
-                                    {
-                                        mrndata.RequestKeyName = key.Value;
-                                    }
+                                    if (key.Name == "name") mrndata.RequestKeyName = key.Value;
                                     keysAttrib.Add(key.Name.LocalName, key.Value);
                                 }
+
                                 mrndata.SetKeyAtrribs(keysAttrib);
                             }
 
@@ -133,16 +128,15 @@ namespace RSSLTraceDecoder
                 jsonString = result.Item2;
                 errorMsg = result.Item3;
                 return result.Item1;
-
             }
-            public static async Task<Tuple<bool,string,string>> UnpackMrnDataAsync(IEnumerable<MrnMsg> list)
+
+            public static async Task<Tuple<bool, string, string>> UnpackMrnDataAsync(IEnumerable<MrnMsg> list)
             {
                 var jsonString = string.Empty;
                 var errorMsg = string.Empty;
                 var bSuccess = true;
                 await Task.Run(async () =>
                 {
-                  
                     try
                     {
                         var totSize = 0;
@@ -155,7 +149,7 @@ namespace RSSLTraceDecoder
                         {
                             if (!data.ContainsFieldList) continue;
                             if (data.GetFieldList().ContainsKey(32480))
-                                totSize = RdmDataConverter.HexStringToInt(data.GetFieldList()[32480])??0;
+                                totSize = RdmDataConverter.HexStringToInt(data.GetFieldList()[32480]) ?? 0;
 
                             if (data.GetFieldList().ContainsKey(32641))
                                 bytesStr.Append(RdmDataConverter.TraceStringToString(data.GetFieldList()[32641]));
@@ -167,7 +161,7 @@ namespace RSSLTraceDecoder
                         {
                             errorMsg =
                                 $"Detect incomplete XML Fragments list\r\nCurrent XML Fragments size is {bytesArraySize} while Total Size is {totSize}\r\n";
-                            errorMsg += $"Data might be corrupted or missing some fragment";
+                            errorMsg += "Data might be corrupted or missing some fragment";
                             bSuccess = false;
                             return new Tuple<bool, string, string>(bSuccess, jsonString, errorMsg);
                         }
@@ -176,7 +170,7 @@ namespace RSSLTraceDecoder
                         using (var zipStream = new GZipStream(compressedStream, CompressionMode.Decompress))
                         using (var resultStream = new MemoryStream())
                         {
-                            await zipStream.CopyToAsync(resultStream).ConfigureAwait(false); 
+                            await zipStream.CopyToAsync(resultStream).ConfigureAwait(false);
                             jsonString = Encoding.UTF8.GetString(resultStream.ToArray());
                         }
 
@@ -189,11 +183,11 @@ namespace RSSLTraceDecoder
                         bSuccess = false;
                         return new Tuple<bool, string, string>(bSuccess, jsonString, errorMsg);
                     }
-             
                 });
 
                 return new Tuple<bool, string, string>(bSuccess, jsonString, errorMsg);
             }
+
             public static MsgType StringtoType(string elementName)
             {
                 if (elementName.ToLower().Contains("requestmsg"))

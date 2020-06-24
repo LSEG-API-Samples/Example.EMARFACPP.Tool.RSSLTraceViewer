@@ -43,17 +43,17 @@ namespace RDMDictDecoder
             errorMsg = result.Item3;
             return result.Item1;
         }
-        public static async Task<Tuple<bool,RdmEnumTypeDef,string>> LoadEnumTypeDefAsync(string filename)
+
+        public static async Task<Tuple<bool, RdmEnumTypeDef, string>> LoadEnumTypeDefAsync(string filename)
         {
-         
-            string errorMsg = string.Empty;
+            var errorMsg = string.Empty;
             var enumFidList = new List<RdmEnumEntry>();
             var enumDisplayValueList = new List<RdmEnumDisplayValue>();
-            RdmEnumTypeDef rdmEnumTypeDef = new RdmEnumTypeDef(enumFidList, enumDisplayValueList);
+            var rdmEnumTypeDef = new RdmEnumTypeDef(enumFidList, enumDisplayValueList);
             if (!File.Exists(filename))
             {
                 errorMsg += $"\nCannot find file {filename}";
-                return new Tuple<bool, RdmEnumTypeDef, string>(false,rdmEnumTypeDef,errorMsg);
+                return new Tuple<bool, RdmEnumTypeDef, string>(false, rdmEnumTypeDef, errorMsg);
             }
 
             var enumIndex = 0;
@@ -124,6 +124,7 @@ namespace RDMDictDecoder
                             return new Tuple<bool, RdmEnumTypeDef, string>(false, rdmEnumTypeDef, errorMsg);
                         }
                 }
+
                 return new Tuple<bool, RdmEnumTypeDef, string>(true, rdmEnumTypeDef, errorMsg);
             }
             catch (Exception exception)
@@ -131,21 +132,21 @@ namespace RDMDictDecoder
                 errorMsg += $"\n{exception.Message}\n{exception.StackTrace}";
                 return new Tuple<bool, RdmEnumTypeDef, string>(false, rdmEnumTypeDef, errorMsg);
             }
-
-           
         }
+
         public static bool LoadRdmDictionary(string filename, out RdmFieldDictionary rdmDict, out string errorMsg)
         {
-            var result=Task.Run(() => LoadRdmDictionaryAsync(filename)).Result;
-            
-            rdmDict =  result.Item2;
+            var result = Task.Run(() => LoadRdmDictionaryAsync(filename)).Result;
+
+            rdmDict = result.Item2;
             errorMsg = result.Item3;
             return result.Item1;
         }
-        public static async Task<Tuple<bool,RdmFieldDictionary,string>> LoadRdmDictionaryAsync(string filename)
+
+        public static async Task<Tuple<bool, RdmFieldDictionary, string>> LoadRdmDictionaryAsync(string filename)
         {
-            RdmFieldDictionary rdmDict = new RdmFieldDictionary();
-            string errorMsg = string.Empty;
+            var rdmDict = new RdmFieldDictionary();
+            var errorMsg = string.Empty;
 
             if (!File.Exists(filename))
             {
@@ -161,7 +162,6 @@ namespace RDMDictDecoder
                 {
                     string s;
                     while ((s = await sr.ReadLineAsync()) != null)
-                    {
                         if (s[0] != '!')
                         {
                             var splitStr = Regex.Matches(s, @"[\""].+?[\""]|[^ ]+")
@@ -218,7 +218,6 @@ namespace RDMDictDecoder
 
                             rdmDict.Add(entry.Fid, entry);
                         }
-                    }
                 }
 
                 return new Tuple<bool, RdmFieldDictionary, string>(true, rdmDict, errorMsg);
@@ -228,8 +227,6 @@ namespace RDMDictDecoder
                 errorMsg += $"\n{ex.Message}\n{ex.StackTrace}";
                 return new Tuple<bool, RdmFieldDictionary, string>(false, rdmDict, errorMsg);
             }
-
-            
         }
     }
 }

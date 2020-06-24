@@ -10,24 +10,23 @@ namespace RSSLTraceDecoder
 {
     namespace Utils
     {
-
         public partial class RdmDataConverter
         {
             public static double? RealStringtoDouble(string hexString)
             {
-
                 var magnitude = HexStringToUInt(hexString.Substring(0, 2));
                 var hexValue = hexString.Substring(2, hexString.Length - 2).Trim();
                 var val = HexStringToInt64(hexString.Substring(2, hexString.Length - 2));
                 switch (magnitude)
                 {
-                    case (int)MagnitudeType.Infinity:
+                    case (int) MagnitudeType.Infinity:
                         return double.PositiveInfinity;
-                    case (int)MagnitudeType.NegInfinity:
+                    case (int) MagnitudeType.NegInfinity:
                         return double.NegativeInfinity;
-                    case (int)MagnitudeType.NotANumber:
+                    case (int) MagnitudeType.NotANumber:
                         return double.NaN;
                 }
+
                 if (hexValue.StartsWith("F"))
                 {
                     var diff = 16 - hexValue.Length;
@@ -48,10 +47,9 @@ namespace RSSLTraceDecoder
                 if (magnitude >= (int) MagnitudeType.Divisor1)
                 {
                     var exponent = magnitude - (int) MagnitudeType.Divisor1;
-                    return val / Math.Pow(2, (uint)exponent);
+                    return val / Math.Pow(2, (uint) exponent);
                 }
 
-               
 
                 return null;
             }
@@ -111,7 +109,7 @@ namespace RSSLTraceDecoder
                 var day = HexStringToInt(hexDate.Substring(0, 2));
                 var month = HexStringToInt(hexDate.Substring(2, 2));
                 var year = HexStringToInt(hexDate.Substring(4, 4));
-                return new DateTime((int)year, (int)month,(int)day);
+                return new DateTime((int) year, (int) month, (int) day);
             }
 
             public static string HexStringToTime(string hexTime)
@@ -135,6 +133,7 @@ namespace RSSLTraceDecoder
                 return string.Join(":", times.ToArray());
             }
         }
+
         public class XmlHelper
         {
             public static IEnumerable<XElement> GetElement(string xmlString, string elementName)
@@ -142,7 +141,7 @@ namespace RSSLTraceDecoder
                 using (var reader = XmlReader.Create(new StringReader(xmlString)))
                 {
                     while (reader.Name == elementName || reader.ReadToFollowing(elementName))
-                        yield return (XElement)XNode.ReadFrom(reader);
+                        yield return (XElement) XNode.ReadFrom(reader);
                 }
             }
         }

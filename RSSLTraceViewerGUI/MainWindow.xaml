@@ -8,7 +8,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.5*" />
-            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="0.5*" />
             <RowDefinition Height="8.8*" />
             <RowDefinition Height="0.2*" />
         </Grid.RowDefinitions>
@@ -16,30 +16,33 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid Grid.Row="0" Height="Auto">
-           <Grid.ColumnDefinitions>
-               <ColumnDefinition Width="6*" />
-               <ColumnDefinition Width="2*" />
-               <ColumnDefinition Width="2*" />
-           </Grid.ColumnDefinitions>
-            <StackPanel Orientation="Horizontal" Grid.Column="0" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="6*" />
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="2*" />
+            </Grid.ColumnDefinitions>
+            <StackPanel Orientation="Horizontal" Grid.Column="0">
                 <Label Content="XML file path: " Margin="3" />
                 <TextBox Name="FileLocationTxt1" Background="FloralWhite" Foreground="DimGray" Margin="3" Width="250"
                          IsReadOnly="True" />
                 <Button Name="LoadXmlBtn" Margin="5" BorderThickness="2" Click="LoadXmlBtn_OnClick">Load Trace file</Button>
             </StackPanel>
-          
+
         </Grid>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="8*" />
                 <ColumnDefinition Width="2*" />
             </Grid.ColumnDefinitions>
-            <StackPanel Grid.Column="0" Name="FilterStackPanel" Visibility="Hidden" Orientation="Horizontal" Width="Auto" IsEnabled="false">
+            <StackPanel Grid.Column="0" Name="FilterStackPanel" Visibility="Hidden" Orientation="Horizontal"
+                        Width="Auto" IsEnabled="false">
                 <Label> GUID:</Label>
-                <TextBox Name="SearchGuidText" MinWidth="150" Width="Auto" Height="25" TextChanged="SearchGuidText_OnTextChanged"></TextBox>
+                <TextBox Name="SearchGuidText" MinWidth="150" Width="Auto" Height="25"
+                         TextChanged="SearchGuidText_OnTextChanged" />
                 <Button Name="SearchGuidBtn" Width="auto" Height="30" Click="SearchGuidBtn_OnClick">Search</Button>
             </StackPanel>
-            <Button x:Name="UnpackMrnBtn" Grid.Column="1" Height="Auto" Width="150"  Margin="5,5,5,5.4" BorderThickness="2" Click="UnpackMRNBtn_OnClick" Content="Unpack MRN Data"/>
+            <Button x:Name="UnpackMrnBtn" Grid.Column="1" Height="Auto" Width="150" Margin="5,5,5,5.4"
+                    BorderThickness="2" Click="UnpackMRNBtn_OnClick" Content="Unpack MRN Data" />
         </Grid>
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
@@ -48,15 +51,17 @@
             </Grid.ColumnDefinitions>
 
             <GridSplitter Grid.Column="1"
-                      HorizontalAlignment="Left"
-                      ResizeDirection="Columns"
-                      ResizeBehavior="BasedOnAlignment"
-                      Height="610" VerticalAlignment="Top"  Width="Auto" ToolTip="Click and drag Splitter to resize"/>
+                          HorizontalAlignment="Left"
+                          ResizeDirection="Columns"
+                          ResizeBehavior="BasedOnAlignment"
+                          Height="610" VerticalAlignment="Top" Width="Auto" ToolTip="Click and drag Splitter to resize" />
 
             <StackPanel Grid.Column="1" Width="Auto">
-                <TreeView Name="XmlTreeView"  Height="610" Width="Auto"
-                          Margin="10" VirtualizingStackPanel.IsVirtualizing="True" ToolTip="Double click TreeView Node to copy text to clipboard"
-                          VirtualizingStackPanel.VirtualizationMode="Recycling" MouseDoubleClick="XmlTreeView_OnMouseDoubleClick">
+                <TreeView Name="XmlTreeView" Height="610" Width="Auto"
+                          Margin="10" VirtualizingStackPanel.IsVirtualizing="True"
+                          ToolTip="Double click TreeView Node to copy text to clipboard"
+                          VirtualizingStackPanel.VirtualizationMode="Recycling"
+                          MouseDoubleClick="XmlTreeView_OnMouseDoubleClick">
                     <TreeView.Resources>
                         <Style TargetType="{x:Type TreeViewItem}">
                             <Setter Property="HeaderTemplate">
@@ -74,7 +79,7 @@
             </StackPanel>
 
             <StackPanel Grid.Column="0" Width="Auto">
-                <DataGrid Name="XmlFragmentGrid1" Padding="5" Height="620" 
+                <DataGrid Name="XmlFragmentGrid1" Padding="5" Height="620"
                           Width="Auto" AutoGenerateColumns="False" VerticalScrollBarVisibility="Visible"
                           HorizontalScrollBarVisibility="Visible"
                           MouseDoubleClick="XmlFragmentGrid1_OnMouseDoubleClick"
@@ -87,13 +92,16 @@
                         <DataGridTextColumn Header="In/Out" Binding="{Binding MsgDirection}" />
                         <DataGridTextColumn Binding="{Binding RdmMessageType}">
                             <DataGridTextColumn.Header>
-                                <StackPanel Orientation="Horizontal" >
-                                    <TextBlock Text="Msg Type" Width="Auto"></TextBlock>
-                                    <ComboBox Name="MsgTypeComboBox"  ItemsSource="{Binding MsgTypeCheckBoxItems}" SelectedValue="Item" Width="20" MinWidth="20" Height="30" DropDownClosed="MsgTypeComboBox_OnDropDownClosed">
-                                        <ComboBox.ItemTemplate >
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Msg Type" Width="Auto" />
+                                    <ComboBox Name="MsgTypeComboBox" ItemsSource="{Binding MsgTypeCheckBoxItems}"
+                                              SelectedValue="Item" Width="20" MinWidth="20" Height="30"
+                                              DropDownClosed="MsgTypeComboBox_OnDropDownClosed">
+                                        <ComboBox.ItemTemplate>
                                             <DataTemplate>
-                                                <StackPanel Orientation="Horizontal" >
-                                                    <CheckBox Content="{Binding Path=Item}" IsChecked="{Binding Path=IsChecked}" Width="Auto"  />
+                                                <StackPanel Orientation="Horizontal">
+                                                    <CheckBox Content="{Binding Path=Item}"
+                                                              IsChecked="{Binding Path=IsChecked}" Width="Auto" />
                                                 </StackPanel>
                                             </DataTemplate>
                                         </ComboBox.ItemTemplate>
@@ -104,12 +112,15 @@
                         </DataGridTextColumn>
                         <DataGridTextColumn Binding="{Binding DomainType}">
                             <DataGridTextColumn.Header>
-                                <StackPanel Orientation="Horizontal" >
-                                    <TextBlock Text="Domain" Width="Auto"></TextBlock>
-                                    <ComboBox Name="DomainComboBox"  ItemsSource="{Binding Path=DomainCheckBoxItems}"  Width="20" MinWidth="20" Height="30" DropDownClosed="DomainComboBox_OnDropDownClosed">
-                                        <ComboBox.ItemTemplate >
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Domain" Width="Auto" />
+                                    <ComboBox Name="DomainComboBox" ItemsSource="{Binding Path=DomainCheckBoxItems}"
+                                              Width="20" MinWidth="20" Height="30"
+                                              DropDownClosed="DomainComboBox_OnDropDownClosed">
+                                        <ComboBox.ItemTemplate>
                                             <DataTemplate>
-                                                <CheckBox Content="{Binding Path=Item}" IsChecked="{Binding Path=IsChecked}" Width="Auto"  />
+                                                <CheckBox Content="{Binding Path=Item}"
+                                                          IsChecked="{Binding Path=IsChecked}" Width="Auto" />
                                             </DataTemplate>
                                         </ComboBox.ItemTemplate>
                                     </ComboBox>
@@ -119,15 +130,18 @@
                             </DataGridTextColumn.Header>
                         </DataGridTextColumn>
 
-                        <DataGridTextColumn  Binding="{Binding StreamId}">
+                        <DataGridTextColumn Binding="{Binding StreamId}">
                             <DataGridTextColumn.Header>
-                                <StackPanel Orientation="Horizontal" >
-                                    <TextBlock Text="Stream Id" Width="Auto"></TextBlock>
-                                    <ComboBox Name="StreamIdComboBox"  ItemsSource="{Binding StreamIdCheckBoxItems}" SelectedValue="Item" Width="20" MinWidth="20" Height="30" DropDownClosed="StreamIdComboBox_OnDropDownClosed">
-                                        <ComboBox.ItemTemplate >
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Stream Id" Width="Auto" />
+                                    <ComboBox Name="StreamIdComboBox" ItemsSource="{Binding StreamIdCheckBoxItems}"
+                                              SelectedValue="Item" Width="20" MinWidth="20" Height="30"
+                                              DropDownClosed="StreamIdComboBox_OnDropDownClosed">
+                                        <ComboBox.ItemTemplate>
                                             <DataTemplate>
-                                                <StackPanel Orientation="Horizontal" >
-                                                    <CheckBox Content="{Binding Path=Item}" IsChecked="{Binding Path=IsChecked}" Width="Auto"  />
+                                                <StackPanel Orientation="Horizontal">
+                                                    <CheckBox Content="{Binding Path=Item}"
+                                                              IsChecked="{Binding Path=IsChecked}" Width="Auto" />
                                                 </StackPanel>
                                             </DataTemplate>
                                         </ComboBox.ItemTemplate>
@@ -136,15 +150,18 @@
                             </DataGridTextColumn.Header>
                         </DataGridTextColumn>
 
-                        <DataGridTextColumn  Binding="{Binding RequestKeyName}">
+                        <DataGridTextColumn Binding="{Binding RequestKeyName}">
                             <DataGridTextColumn.Header>
-                                <StackPanel Orientation="Horizontal" >
-                                    <TextBlock Text="Key" Width="Auto"></TextBlock>
-                                    <ComboBox Name="KeyNameComboBox"  ItemsSource="{Binding KeyNameCheckBoxItems}" SelectedValue="Item" Width="20" MinWidth="20" Height="30" DropDownClosed="KeyNameComboBox_OnDropDownClosed">
-                                        <ComboBox.ItemTemplate >
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Key" Width="Auto" />
+                                    <ComboBox Name="KeyNameComboBox" ItemsSource="{Binding KeyNameCheckBoxItems}"
+                                              SelectedValue="Item" Width="20" MinWidth="20" Height="30"
+                                              DropDownClosed="KeyNameComboBox_OnDropDownClosed">
+                                        <ComboBox.ItemTemplate>
                                             <DataTemplate>
-                                                <StackPanel Orientation="Horizontal" >
-                                                    <CheckBox Content="{Binding Path=Item}" IsChecked="{Binding Path=IsChecked}" Width="Auto"  />
+                                                <StackPanel Orientation="Horizontal">
+                                                    <CheckBox Content="{Binding Path=Item}"
+                                                              IsChecked="{Binding Path=IsChecked}" Width="Auto" />
                                                 </StackPanel>
                                             </DataTemplate>
                                         </ComboBox.ItemTemplate>
@@ -157,7 +174,7 @@
                         <DataGridTextColumn Binding="{Binding GUID}">
                             <DataGridTextColumn.Header>
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="GUID" Width="Auto"></TextBlock>
+                                    <TextBlock Text="GUID" Width="Auto" />
 
                                 </StackPanel>
                             </DataGridTextColumn.Header>

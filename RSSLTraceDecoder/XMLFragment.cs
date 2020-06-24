@@ -12,7 +12,9 @@
         // MsgTypeRawXmlData: Use when found Incomming or Outgoing message
         public string MsgTypeRawXmlData { get; set; }
         public string RWFMajorMinorVersion { get; set; }
+
         public string RWFMajorMinorVersionRawXmlData { get; set; }
+
         // TimeStamp: Time when it receive Incomming or Outgoing message
         public string TimeStamp { get; set; }
 

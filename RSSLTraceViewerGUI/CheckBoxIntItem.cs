@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using RSSLTraceViewerGUI.Annotations;
 
 namespace RSSLTraceViewerGUI
@@ -14,14 +9,14 @@ namespace RSSLTraceViewerGUI
         private bool _isChecked;
         private int _item;
 
-        public CheckBoxIntItem()
-        {
-
-        }
         public bool IsChecked
         {
             get => _isChecked;
-            set { _isChecked = value; OnPropertyChanged(); }
+            set
+            {
+                _isChecked = value;
+                OnPropertyChanged();
+            }
         }
 
         public int Item

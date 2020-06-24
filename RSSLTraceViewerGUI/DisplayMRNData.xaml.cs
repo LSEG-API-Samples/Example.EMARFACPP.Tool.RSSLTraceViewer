@@ -18,7 +18,7 @@ namespace RSSLTraceViewerGUI
             RawHeaderText = "";
             DataContext = this;
         }
-       
+
         public string RawData { get; set; }
         public string RawHeaderText { get; set; }
         public JToken JsonUnpackToken { get; set; }
@@ -33,7 +33,7 @@ namespace RSSLTraceViewerGUI
                 saveFileDialog.InitialDirectory = Environment.CurrentDirectory;
                 if (saveFileDialog.ShowDialog() == true)
                 {
-                    using (var fs = File.Open(saveFileDialog.FileName,FileMode.OpenOrCreate))
+                    using (var fs = File.Open(saveFileDialog.FileName, FileMode.OpenOrCreate))
                     using (var sw = new StreamWriter(fs))
                     using (var jsw = new JsonTextWriter(sw))
                     {
@@ -49,10 +49,7 @@ namespace RSSLTraceViewerGUI
             catch (Exception ex)
             {
                 MessageBox.Show($"Writing Json to file Error\r\n {ex.Message}");
-
             }
-  
         }
-
     }
 }

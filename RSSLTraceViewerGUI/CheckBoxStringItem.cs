@@ -1,24 +1,22 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using RSSLTraceViewerGUI.Annotations;
 
 namespace RSSLTraceViewerGUI
 {
-    
     public class CheckBoxStringItem : INotifyPropertyChanged
     {
         private bool _isChecked;
         private string _item;
 
-        public CheckBoxStringItem()
-        {
-
-        }
         public bool IsChecked
         {
             get => _isChecked;
-            set { _isChecked = value; OnPropertyChanged(); }
+            set
+            {
+                _isChecked = value;
+                OnPropertyChanged();
+            }
         }
 
         public string Item

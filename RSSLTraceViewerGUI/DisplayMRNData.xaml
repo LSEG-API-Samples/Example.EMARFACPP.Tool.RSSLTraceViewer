@@ -22,18 +22,18 @@
                 <ColumnDefinition Width="6.5*" />
 
             </Grid.ColumnDefinitions>
-            
+
             <StackPanel Orientation="Horizontal" Height="60" Width="Auto" Grid.Column="1" HorizontalAlignment="Left">
                 <Label Name="JsonDataHeaderText" Content="JSON Data" />
                 <Button Name="SaveJsonBtn" Click="SaveJsonBtn_OnClick">Save Json data to file</Button>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Grid.Column="3" Height="25">
-                
+
                 <TextBlock Name="RawHeader1" Width="Auto"
                            HorizontalAlignment="Right" TextAlignment="Right"
-                           Text="{Binding RawHeaderText}" Foreground="GhostWhite" 
+                           Text="{Binding RawHeaderText}" Foreground="GhostWhite"
                            Height="25"
-                           Padding="2"/>
+                           Padding="2" />
             </StackPanel>
         </Grid>
         <Grid Grid.Row="1">
@@ -47,7 +47,7 @@
                           ResizeBehavior="BasedOnAlignment"
                           Height="580" VerticalAlignment="Top" Width="Auto" ToolTip="Click and drag Splitter to resize" />
 
-            <StackPanel Grid.Column="1"  Width="Auto">
+            <StackPanel Grid.Column="1" Width="Auto">
                 <TreeView Name="XmlRawTreeView" Height="580" Width="Auto" Margin="2">
                     <TreeView.Resources>
                         <Style TargetType="{x:Type TreeViewItem}">
@@ -55,8 +55,8 @@
                                 <Setter.Value>
                                     <DataTemplate>
                                         <TextBlock Width="400"
-                                                       TextWrapping="Wrap"
-                                                       Text="{Binding}" Foreground="GhostWhite" />
+                                                   TextWrapping="Wrap"
+                                                   Text="{Binding}" Foreground="GhostWhite" />
                                     </DataTemplate>
                                 </Setter.Value>
                             </Setter>

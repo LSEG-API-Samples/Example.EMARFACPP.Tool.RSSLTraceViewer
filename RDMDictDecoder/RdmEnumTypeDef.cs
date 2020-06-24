@@ -13,6 +13,7 @@ namespace RDMDictDecoder
             _enumDisplayValues = enumDisplayValues;
             _enumEntries = enumEntries;
         }
+
         //Return all fids/fields listed in enumertype.def
         public Dictionary<string, int> EnumeratedFields
         {
@@ -25,7 +26,6 @@ namespace RDMDictDecoder
             get { return _enumEntries.Select(x => x.EnumGroupId).ToList(); }
         }
 
-        
 
         //This function passing fidId and return GroupID or Set number 
         public int GetFidGroupId(int fidId)
@@ -52,7 +52,7 @@ namespace RDMDictDecoder
         public bool GetDisplayValueFromGroupId(int groupId, out List<RdmEnumDisplayValue> displayList)
         {
             var ret = from x in _enumDisplayValues where x.EnumGroupId == groupId select x;
-            displayList= ret!=null?ret.ToList():new List<RdmEnumDisplayValue>();
+            displayList = ret != null ? ret.ToList() : new List<RdmEnumDisplayValue>();
             return displayList.Count > 0;
         }
 
@@ -62,10 +62,11 @@ namespace RDMDictDecoder
         public bool GetEnumDisplayString(int fidId, int enumValue, out string displayValue)
         {
             var ret = GetEnumDisplayValue(fidId, enumValue, out var enumDisplay);
-            
-            displayValue = ret?enumDisplay.EnumDisplay:string.Empty;
+
+            displayValue = ret ? enumDisplay.EnumDisplay : string.Empty;
             return ret;
         }
+
         // This function used to get EnumDisplayString by passing fid Id and Enum value.
         // The difference between this function and above function is just the case that it's unknown value.
         // The return value will be "Unknown(enumValue)" instead.

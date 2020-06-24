@@ -25,11 +25,9 @@ namespace RSSLTraceDecoder.MRN
 
         public MrnMsg Get(int index)
         {
-            if(_mrnMsgList.ContainsKey(index))
-                  return _mrnMsgList[index];
-            else
-                return null;
-
+            if (_mrnMsgList.ContainsKey(index))
+                return _mrnMsgList[index];
+            return null;
         }
 
         public IEnumerable<MrnMsg> GetXMLFragmentsByDomainType(string domainType)
