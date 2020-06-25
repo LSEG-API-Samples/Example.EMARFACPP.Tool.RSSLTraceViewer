@@ -375,7 +375,7 @@ namespace RSSLTraceViewerGUI
                                 reader.MoveToAttribute(i);
                                 var attributeName = reader.Name.Trim();
                                 var attributeVal = reader.Value.Trim();
-
+                                var hexValue = "";
                                 if (elementName == "fieldEntry")
                                     switch (attributeName)
                                     {
@@ -390,6 +390,7 @@ namespace RSSLTraceViewerGUI
                                         }
                                         case "data":
                                         {
+                                            hexValue = attributeVal;
                                             if (XMLFragmentsData.FieldValueToString(
                                                 fidId,
                                                 attributeVal, _fieldDictionary, _enumTypeDef,
@@ -402,6 +403,10 @@ namespace RSSLTraceViewerGUI
                                     }
 
                                 attributeStr += $" {attributeName}=\"{attributeVal}\"";
+                                if (attributeName == "data")
+                                {
+                                    attributeStr += $" Hex=\"{hexValue}\"";
+                                }
                             }
                         }
 
