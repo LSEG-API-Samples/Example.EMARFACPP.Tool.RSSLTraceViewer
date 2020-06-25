@@ -83,6 +83,7 @@ namespace RSSLTraceViewerGUI
                     var appConfig = (dynamic) jObject;
                     _rdmDictFilePath = (string) appConfig["RDMDictionary"]["RDMFieldDictFilePath"];
                     _enumTypeDefFilePath = (string) appConfig["RDMDictionary"]["EnumTypeDefFilePath"];
+                    
                     _useRdmStrictMode =
                         (bool) (appConfig["UseRDMStrictMode"] == null ? true : appConfig["UseRDMStrictMode"]);
                 }
