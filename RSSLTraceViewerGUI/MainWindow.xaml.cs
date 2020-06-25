@@ -444,11 +444,20 @@ namespace RSSLTraceViewerGUI
                 // Please note that there could be multiple fragments which use the same GUID so we need more complex logic to handle of this issue.
 
                 var mrnMsgs = _messageList.GetMrnByGuid(xmlGridData.GUID);
+                
                 var startIndex = 0;
                 if (xmlGridData.MrnFragmentNumber <= 1)
                     startIndex = xmlGridData.Index;
                 else
-                    startIndex = xmlGridData.Index - (xmlGridData.MrnFragmentNumber - 1);
+                {
+                    // Find the index from mrnMsgs which contains the same GUID and it must has MrnFragmentNumber equals to 1;
+                    var currentIndex = mrnMsgs.FindIndex(x => x.FragmentNumber == (_selectedIndex+1));
+
+                    // Calculate the startIndex from the currentIndex.
+                    startIndex =
+                        (int) mrnMsgs?.ElementAt<MrnMsg>(currentIndex - (xmlGridData.MrnFragmentNumber - 1))
+                            .FragmentNumber;
+                }
 
                 var newIndex = mrnMsgs.FindIndex(x => x.FragmentNumber == startIndex);
 
