@@ -126,7 +126,7 @@ namespace RSSLTraceDecoder
                     }
                     else if (i >= 6)
                     {
-                        times.Add($"{HexStringToInt(hexTime.Substring(i, hexTime.Length - 6))}");
+                        times.Add($"{HexStringToInt64(hexTime.Substring(i, hexTime.Length - 6))}");
                         i += hexTime.Length - 6;
                     }
 
