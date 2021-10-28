@@ -96,9 +96,6 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
-    <Reference Include="ThomsonReuters.Desktop.SDK.UI, Version=2.4.5.0, Culture=neutral, PublicKeyToken=f277fbca8b8695cc, processorArchitecture=MSIL">
-      <HintPath>..\packages\ThomsonReuters.Desktop.SDK.UI.Signed.2.4.6\lib\net40-Client\ThomsonReuters.Desktop.SDK.UI.dll</HintPath>
-    </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
