@@ -31,7 +31,7 @@
 
                 <TextBlock Name="RawHeader1" Width="Auto"
                            HorizontalAlignment="Right" TextAlignment="Right"
-                           Text="{Binding RawHeaderText}" Foreground="GhostWhite"
+                           Text="{Binding RawHeaderText}" Foreground="Black"
                            Height="25"
                            Padding="2" />
             </StackPanel>
@@ -56,7 +56,7 @@
                                     <DataTemplate>
                                         <TextBlock Width="400"
                                                    TextWrapping="Wrap"
-                                                   Text="{Binding}" Foreground="GhostWhite" />
+                                                   Text="{Binding}" Foreground="black" />
                                     </DataTemplate>
                                 </Setter.Value>
                             </Setter>
@@ -71,7 +71,7 @@
                          TextWrapping="Wrap"
                          VerticalScrollBarVisibility="Auto"
                          HorizontalScrollBarVisibility="Auto"
-                         Foreground="GhostWhite"
+                         Foreground="Black"
                          Height="580" Width="Auto"
                          Text="{Binding RawData}" />
 

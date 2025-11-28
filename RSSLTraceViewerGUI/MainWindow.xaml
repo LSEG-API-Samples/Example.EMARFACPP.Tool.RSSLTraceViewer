@@ -69,7 +69,7 @@
                                     <DataTemplate>
                                         <TextBlock MinWidth="450" MaxWidth="800"
                                                    TextWrapping="Wrap"
-                                                   Text="{Binding}" Foreground="GhostWhite" TextAlignment="Left" />
+                                                   Text="{Binding}" Foreground="Black" TextAlignment="Left" />
                                     </DataTemplate>
                                 </Setter.Value>
                             </Setter>
